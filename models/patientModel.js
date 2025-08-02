@@ -6,7 +6,8 @@ const createPatient = (data, callback) => {
   const encryptedName = encrypt(data.name);
   const encryptedAddress = encrypt(data.address);
 
-  const sql = `INSERT INTO Patient (name, age, gender, address, registered_by) VALUES (?, ?, ?, ?, ?)`;
+  const sql = `INSERT INTO Patient (name, age, gender, address, diseases, medicines, registered_by) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+
   pool.query(
     sql,
     [
@@ -33,6 +34,8 @@ const getAllPatients = (callback) => {
       address: isHex(patient.address)
         ? decrypt(patient.address)
         : patient.address,
+      diseases: patient.diseases,
+      medicines: patient.medicines,
     }));
 
     callback(null, decrypted);
