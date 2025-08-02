@@ -2,6 +2,7 @@ const express = require("express");
 const pool = require("./config/db");
 const syncRoutes = require("./routes/syncRoutes");
 const patientRoutes = require("./routes/patientRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
@@ -18,3 +19,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
+
+app.use("/auth", authRoutes);
