@@ -1,13 +1,16 @@
 const express = require("express");
 const pool = require("./config/db");
+const syncRoutes = require("./routes/syncRoutes");
+const patientRoutes = require("./routes/patientRoutes");
+
 const app = express();
 
 require("dotenv").config();
 
 app.use(express.json());
 
-const patientRoutes = require("./routes/patientRoutes");
 app.use("/patients", patientRoutes);
+app.use("/sync", syncRoutes);
 
 app.get("/", (req, res) => res.send("Health App Backend Running"));
 
