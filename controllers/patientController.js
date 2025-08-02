@@ -1,4 +1,4 @@
-const { createPatient } = require("../models/patientModel");
+const { createPatient, getAllPatients } = require("../models/patientModel");
 
 const addPatient = (req, res) => {
   createPatient(req.body, (err, results) => {
@@ -13,4 +13,14 @@ const addPatient = (req, res) => {
   });
 };
 
-module.exports = { addPatient };
+const fetchPatients = (req, res) => {
+  getAllPatients((err, results) => {
+    if (err) {
+      console.error("Error fetching patients:", err);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+    res.json(results);
+  });
+};
+
+module.exports = { addPatient, fetchPatients };

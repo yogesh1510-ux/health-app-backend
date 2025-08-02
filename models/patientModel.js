@@ -6,4 +6,9 @@ const createPatient = (data, callback) => {
   pool.query(sql, [name, age, gender, address, registered_by], callback);
 };
 
-module.exports = { createPatient };
+const getAllPatients = (callback) => {
+  const sql = "SELECT * FROM Patient";
+  pool.query(sql, callback);
+};
+
+module.exports = { createPatient, getAllPatients };
