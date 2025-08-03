@@ -67,17 +67,41 @@ This backend supports a health application used by field nurses to:
 │   ├── db.js
 │   └── redis.js
 ├── controllers/
+│   ├── adminController.js
+│   ├── authController.js
+│   ├── checkupController.js
+│   ├── patientController.js
+│   └── syncController.js
 ├── middlewares/
+│   ├── authMiddleware.js
+│   ├── catchAsyncErrors.js
+│   ├── checkRole.js
+│   ├── error.js
+│   └── rateLimiter.js
 ├── models/
+│   ├── adminModel.js
+│   ├── checkupModel.js
+│   ├── diseaseModel.js
+│   ├── medicineModel.js
+│   ├── patientModel.js
+│   └── userModel.js
 ├── routes/
+│   ├── adminRoutes.js
+│   ├── authRoutes.js
+│   ├── checkupRoutes.js
+│   ├── patientRoutes.js
+│   └── syncRoutes.js
 ├── utils/
-│   └── encryption.js
+│   ├── encryption.js
+│   └── errorHandler.js
 ├── docs/
 │   ├── SECURITY_STRATEGY.md
 │   ├── RATE_LIMITING_STRATEGY.md
-│   ├── DATABASE_SCHEMA.md
-│   ├── SYSTEM_ARCHITECTURE.md
-│   └── ER_DIAGRAM.png
+│   ├── DATABASE_SCHEMA.png
+│   ├── SYSTEM_ARCHITECTURE.png
+│
+└── .env.example
+
 ```
 
 ---
@@ -159,7 +183,7 @@ GET /admin/nurses    // List all nurses (Admin-only)
 - `StaffNurse` (admin or nurse)
 - `Checkups`, `Diseases`, `Medicines` (related via FK)
 
-➡️ See [docs/DATABASE_SCHEMA.md](./docs/DATABASE_SCHEMA.md) and ER diagram.
+➡️ See [docs/DATABASE_SCHEMA.png](./docs/DATABASE_SCHEMA.png).
 
 ---
 
@@ -168,10 +192,7 @@ GET /admin/nurses    // List all nurses (Admin-only)
 - System Architecture (API → DB → Redis)
 - ER Diagram for relational structure
 
-➡️ Check `docs/` folder:
-
-- `SYSTEM_ARCHITECTURE.md`
-- `ER_DIAGRAM.png`
+➡️ See [docs/DATABASE_SCHEMA.png](./docs/System_Architecture_Diagram.png).
 
 ---
 
