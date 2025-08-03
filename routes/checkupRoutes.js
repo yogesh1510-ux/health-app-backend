@@ -6,8 +6,9 @@ const {
   addCheckup,
   fetchCheckups,
 } = require("../controllers/checkupController");
+const { dynamicLimiter } = require("../middlewares/rateLimiter");
 
-router.post("/", verifyToken, checkRole("Nurse"), addCheckup);
-router.get("/", verifyToken, fetchCheckups);
+router.post("/", verifyToken, dynamicLimiter, checkRole("Nurse"), addCheckup);
+router.get("/", verifyToken, dynamicLimiter, fetchCheckups);
 
 module.exports = router;

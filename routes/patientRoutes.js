@@ -6,8 +6,10 @@ const {
   addOrUpdatePatient,
   fetchPatients,
 } = require("../controllers/patientController");
+const { dynamicLimiter } = require("../middlewares/rateLimiter");
 
-router.post("/", verifyToken, addOrUpdatePatient);
-router.get("/", verifyToken, checkRole("Nurse"), fetchPatients);
+router.post("/", verifyToken, dynamicLimiter, addOrUpdatePatient);
+
+router.get("/", verifyToken, dynamicLimiter, checkRole("Nurse"), fetchPatients);
 
 module.exports = router;

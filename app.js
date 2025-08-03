@@ -3,7 +3,7 @@ const pool = require("./config/db");
 const syncRoutes = require("./routes/syncRoutes");
 const patientRoutes = require("./routes/patientRoutes");
 const authRoutes = require("./routes/authRoutes");
-const { baseLimiter } = require("./middlewares/rateLimiter");
+const { dynamicLimiter } = require("./middlewares/rateLimiter");
 const adminRoutes = require("./routes/adminRoutes");
 const checkupRoutes = require("./routes/checkupRoutes");
 const errorMiddleware = require("./middlewares/error");
@@ -13,7 +13,7 @@ require("dotenv").config();
 const app = express();
 
 app.use(express.json());
-app.use(baseLimiter);
+app.use(dynamicLimiter);
 
 // Register routes
 app.use("/auth", authRoutes);
