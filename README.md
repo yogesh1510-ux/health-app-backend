@@ -194,9 +194,12 @@ GET /admin/nurses    // List all nurses (Admin-only)
 
 - **ER Diagram:**  
   Captures relationships such as:
+
   - One StaffNurse → many Patients
   - One Patient → many Checkups
   - One Checkup → multiple Diseases & Medicines
+
+  ➡️ See [docs/System_Architecture_Diagram.png](./docs/System_Architecture_Diagram.png).
 
 ---
 
