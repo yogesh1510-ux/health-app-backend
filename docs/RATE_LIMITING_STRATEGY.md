@@ -60,13 +60,13 @@ Each rate-limited response includes:
 
 ---
 
-## 6. Emergency Bypass Strategy ✅ Implemented
+## 6. Emergency Bypass Strategy Implemented
 
 A special emergency flag is supported:
 
 - **Header:** `X-Bypass-RateLimit: true`
-- ✅ Only effective for users with `Admin` role (validated via `checkRole`)
-- ❌ Ignored or blocked for non-admin users
+- Only effective for users with `Admin` role (validated via `checkRole`)
+- Ignored or blocked for non-admin users
 
 ---
 
@@ -76,7 +76,7 @@ The Redis store enables rate limiting to function **consistently across containe
 
 ---
 
-## ✅ Summary
+## Summary
 
 | Area             | Implementation                |
 | ---------------- | ----------------------------- |
