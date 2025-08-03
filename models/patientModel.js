@@ -1,7 +1,6 @@
 const pool = require("../config/db");
 
 const { encrypt, decrypt } = require("../utils/encryption");
-
 const createPatient = (data, callback) => {
   const encryptedName = encrypt(data.name);
   const encryptedAddress = encrypt(data.address);
@@ -15,6 +14,8 @@ const createPatient = (data, callback) => {
       data.age,
       data.gender,
       encryptedAddress,
+      data.diseases || "",
+      data.medicines || "",
       data.registered_by,
     ],
     callback
