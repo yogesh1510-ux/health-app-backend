@@ -183,7 +183,7 @@ GET /admin/nurses    // List all nurses (Admin-only)
 - `StaffNurse` (admin or nurse)
 - `Checkups`, `Diseases`, `Medicines` (related via FK)
 
-➡️ See [docs/DATABASE_SCHEMA.png](./docs/DATABASE_SCHEMA.png).
+➡️ See [docs/DATABASE_SCHEMA.png](./docs/Database_Schema.png).
 
 ---
 
