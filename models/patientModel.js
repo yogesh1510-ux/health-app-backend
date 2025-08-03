@@ -43,4 +43,42 @@ const getAllPatients = (callback) => {
   });
 };
 
-module.exports = { createPatient, getAllPatients };
+const findPatientByNameAndAddress = (name, address, callback) => {
+  const encryptedName = encrypt(name);
+  const encryptedAddress = encrypt(address);
+
+  const sql = `
+    SELECT * FROM Patient
+    WHERE name = ? AND address = ?
+    LIMIT 1
+  `;
+  pool.query(sql, [encryptedName, encryptedAddress], (err, results) => {
+    if (err) return callback(err);
+    if (results.length > 0) return callback(null, results[0]);
+    return callback(null, null);
+  });
+};
+
+const updatePatient = (id, data, callback) => {
+  const sql = `
+    UPDATE Patient
+    SET age = ?, gender = ?, diseases = ?, medicines = ?, registered_by = ?
+    WHERE id = ?
+  `;
+  const values = [
+    data.age,
+    data.gender,
+    data.diseases,
+    data.medicines,
+    data.registered_by,
+    id,
+  ];
+  pool.query(sql, values, callback);
+};
+
+module.exports = {
+  createPatient,
+  getAllPatients,
+  findPatientByNameAndAddress,
+  updatePatient,
+};
