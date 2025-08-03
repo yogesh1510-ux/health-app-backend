@@ -1,7 +1,8 @@
 const pool = require("../config/db");
+const catchAsyncErros = require("../middlewares/catchAsyncErros");
 const { encrypt } = require("../utils/encryption");
 
-const syncData = async (req, res) => {
+const syncData = catchAsyncErros(async (req, res) => {
   const { patients = [] } = req.body;
 
   try {
@@ -53,6 +54,6 @@ const syncData = async (req, res) => {
     console.error("Sync error:", err);
     res.status(500).json({ error: "Sync failed" });
   }
-};
+});
 
 module.exports = { syncData };

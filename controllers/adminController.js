@@ -1,6 +1,7 @@
 const { getAllNurses } = require("../models/adminModel");
+const catchAsyncErrors = require("../middlewares/catchAsyncErros");
 
-const fetchNurses = (req, res) => {
+const fetchNurses = catchAsyncErrors((req, res) => {
   getAllNurses((err, results) => {
     if (err) {
       console.error("Error fetching nurses:", err);
@@ -8,6 +9,6 @@ const fetchNurses = (req, res) => {
     }
     res.status(200).json(results);
   });
-};
+});
 
 module.exports = { fetchNurses };

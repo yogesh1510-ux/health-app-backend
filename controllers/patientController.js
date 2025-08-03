@@ -1,3 +1,4 @@
+const catchAsyncErros = require("../middlewares/catchAsyncErros");
 const {
   createPatient,
   getAllPatients,
@@ -5,7 +6,7 @@ const {
   updatePatient,
 } = require("../models/patientModel");
 
-const addOrUpdatePatient = (req, res) => {
+const addOrUpdatePatient = catchAsyncErros((req, res) => {
   const {
     name,
     age,
@@ -72,9 +73,9 @@ const addOrUpdatePatient = (req, res) => {
       );
     }
   });
-};
+});
 
-const fetchPatients = (req, res) => {
+const fetchPatients = catchAsyncErros((req, res) => {
   getAllPatients((err, results) => {
     if (err) {
       console.error("Error fetching patients:", err);
@@ -82,6 +83,6 @@ const fetchPatients = (req, res) => {
     }
     res.json(results);
   });
-};
+});
 
 module.exports = { addOrUpdatePatient, fetchPatients };

@@ -6,6 +6,7 @@ const authRoutes = require("./routes/authRoutes");
 const { baseLimiter } = require("./middlewares/rateLimiter");
 const adminRoutes = require("./routes/adminRoutes");
 const checkupRoutes = require("./routes/checkupRoutes");
+const errorMiddleware = require("./middlewares/error");
 
 require("dotenv").config();
 
@@ -20,9 +21,13 @@ app.use("/patients", patientRoutes);
 app.use("/sync", syncRoutes);
 app.use("/admin", adminRoutes);
 app.use("/checkups", checkupRoutes);
+const cors = require("cors");
 
 // Health check route
 app.get("/", (req, res) => res.send("Health App Backend Running"));
+app.use(cors());
+
+app.use(errorMiddleware);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

@@ -1,8 +1,9 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { findUserByName } = require("../models/userModel");
+const catchAsyncErros = require("../middlewares/catchAsyncErros");
 
-const login = (req, res) => {
+const login = catchAsyncErros((req, res) => {
   const { username } = req.body;
 
   findUserByName(username, (err, results) => {
@@ -22,6 +23,6 @@ const login = (req, res) => {
 
     res.status(200).json({ token });
   });
-};
+});
 
 module.exports = { login };
