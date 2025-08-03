@@ -54,7 +54,6 @@ This backend supports a health application used by field nurses to:
 | Auth             | JWT                              |
 | Encryption       | AES-256-CBC using Node.js crypto |
 | Rate Limiting    | express-rate-limit + Redis       |
-| Caching/Store    | Redis                            |
 | Deployment-ready | CORS, Environment Config, etc.   |
 
 ---
@@ -189,10 +188,15 @@ GET /admin/nurses    // List all nurses (Admin-only)
 
 ## 🧭 System Design Diagrams
 
-- System Architecture (API → DB → Redis)
-- ER Diagram for relational structure
+- **System Architecture:**  
+  Android App → Node.js API → MySQL  
+  ↳ Redis is used exclusively for distributed rate limiting across API instances.
 
-➡️ See [docs/DATABASE_SCHEMA.png](./docs/System_Architecture_Diagram.png).
+- **ER Diagram:**  
+  Captures relationships such as:
+  - One StaffNurse → many Patients
+  - One Patient → many Checkups
+  - One Checkup → multiple Diseases & Medicines
 
 ---
 
