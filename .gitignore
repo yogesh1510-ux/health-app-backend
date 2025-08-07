@@ -11,3 +11,4 @@ logs/
 # IDE folders
 .vscode/
 .DS_Store
+node_modules/
